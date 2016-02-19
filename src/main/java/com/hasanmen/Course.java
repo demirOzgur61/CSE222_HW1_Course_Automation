@@ -10,6 +10,11 @@ public class Course {
     private String name;
     private List<Uploads> uploads;
 
+    public Course(){
+http://193.140.134.13/
+
+    }
+
     public Course(String name) {
         this.name = name;
         try {
