@@ -1,10 +1,6 @@
 package com.hasanmen.cse222_HW1_131044009_2016;
 
 
-import com.hasanmen.cse222_HW1_131044009_2016.Course.Course;
-import com.hasanmen.cse222_HW1_131044009_2016.User.Admin;
-import com.hasanmen.cse222_HW1_131044009_2016.User.Teacher;
-import com.hasanmen.cse222_HW1_131044009_2016.User.User;
 
 public class Main {
     public static void main(String... args){
@@ -21,10 +17,10 @@ public class Main {
         }
 
         admin.addCourse(new Course("CSE222"));
+        admin.addStudent(new Student("Mercan","Karacabey","mkrcby","123","mercankrcby@gmail.com",131044009));
 
         admin.getAccessibleCourses().get(0).getCourseTeachers().add(new Teacher("Fatih Erdogan","Sevilgen","ferdogansev","123","ferdogan@gtu.edu.tr"));
-        admin.getAccessibleCourses().get(0).getCourseTeachers().add(new Teacher("Fatih Erdogan","Sevilgen","ferdogansev","123","ferdogan@gtu.edu.tr"));
-        System.out.println(admin.getAccessibleCourses().get(0));
+        admin.getAccessibleCourses().get(0).getCourseTeachers().add(new Teacher("Yusuf Sinan","Akgul","ysakgul","123","ysa@gtu.edu.tr"));
 
         System.out.println(GTUStudentSystem);
 
@@ -35,4 +31,6 @@ public class Main {
 
 
     }
+
+    public static void foo(){}
 }

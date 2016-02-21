@@ -1,8 +1,5 @@
 package com.hasanmen.cse222_HW1_131044009_2016;
 
-import com.hasanmen.cse222_HW1_131044009_2016.Course.Course;
-import com.hasanmen.cse222_HW1_131044009_2016.User.Admin;
-import com.hasanmen.cse222_HW1_131044009_2016.User.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +24,8 @@ public class AutomationSystem {
 
     @Override
     public String toString(){
-        return String.format(name +" : Number of users -> "+users.size()+ " - Number of Courses -> "+courses.size() );
+        return String.format(name +" : Number of users -> "+users.size()+ " - Number of Courses -> "+courses.size()+
+        "\n\t All courses in system : \n\t"+courses);
     }
 
 
