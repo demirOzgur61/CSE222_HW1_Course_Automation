@@ -13,25 +13,32 @@ import java.util.List;
 public class AutomationSystem {
 
     private String name;
+
     private List<Course> courses = new ArrayList<>();
     private List<User> users = new ArrayList<>();
 
     /**
      * Sistem ilk acildiginda bir admin ekler
      */
-    public AutomationSystem(String name){
+    public AutomationSystem(String name) {
         this.name = name;
-        users.add(new Admin("Hasan","MEN","hmenn","hasan5669","hmen@gtu.edu.tr"));
+        users.add(new Admin("Hasan", "MEN", "hmenn", "hasan5669", "hmen@gtu.edu.tr"));
+    }
+
+    @Override
+    public String toString(){
+        return String.format(name +" : Number of users -> "+users.size()+ " - Number of Courses -> "+courses.size() );
     }
 
 
-
-    public User login(String userName, String passWord){
-        for(User usrItr : users){
-            //TODO : USER KARSILASTIRMASI YAPILACAK AMA USER ABSTRACT ONA BIR COZUM BULACAKSIN
-            
-
+    public User login(String userName, String passWord) {
+        for (User usrItr : users) {
+            if (userName.equals(usrItr.getUserName()) && passWord.equals(usrItr.getPassWord())) {
+                usrItr.setAccessibleCourses(courses);
+                usrItr.setAccessibleUsers(users);
+                return usrItr;
+            }
         }
-
+        return null;
     }
 }
