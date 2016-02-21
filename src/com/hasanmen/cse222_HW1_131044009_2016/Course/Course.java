@@ -1,5 +1,7 @@
 package com.hasanmen.cse222_HW1_131044009_2016.Course;
 
+import com.hasanmen.cse222_HW1_131044009_2016.User.User;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,6 +12,8 @@ public class Course {
     private static int COURSE_ID=0;
     private String name;
     private int courseID;
+    private List<User> courseTeachers = new ArrayList<>();
+    private List<User> courseStudents = new ArrayList<>();
     private List<CourseItem> courseItems = new ArrayList<>();
 
     public Course(String name) {
@@ -18,5 +22,40 @@ public class Course {
         courseID= COURSE_ID;
     }
 
+    public String getName() {
+        return name;
+    }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public List<User> getCourseTeachers() {
+        return courseTeachers;
+    }
+
+    public void setCourseTeachers(List<User> courseTeachers) {
+        this.courseTeachers = courseTeachers;
+    }
+
+    public List<User> getCourseStudents() {
+        return courseStudents;
+    }
+
+    public void setCourseStudents(List<User> courseStudents) {
+        this.courseStudents = courseStudents;
+    }
+
+    @Override
+    public String toString(){
+
+        StringBuilder str = new StringBuilder("Course : "+getName());
+
+        for(int i=0;i< getCourseTeachers().size();++i){
+            str.append("\n\t"+getCourseTeachers().get(i));
+
+        }
+
+        return str.toString();
+    }
 }
