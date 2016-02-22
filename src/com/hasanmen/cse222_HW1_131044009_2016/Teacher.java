@@ -18,6 +18,30 @@ public class Teacher extends User {
         super(name, surName, userName, passWord, eMail);
     }
 
+   /* public boolean acceptRequest(Student std){
+
+
+    }*/
+
+    public String showEnrolments(Course course){
+        StringBuilder strBldr = new StringBuilder("");
+
+        int index = givenCourses.indexOf(course);
+        System.out.println(index);
+        if(index != -1){
+            for(int i=0;i<givenCourses.get(i).getCourseRequests().size();++i){
+                strBldr.append(givenCourses.get(i).getCourseRequests().get(i));
+
+            }
+
+            return strBldr.toString();
+        }else return null;
+
+
+    }
+
+
+
     @Override
     public String toString() {
         return String.format("Teacher : Name -> " + getName() + " " + getSurName() + " - E-mail -> " + geteMail());

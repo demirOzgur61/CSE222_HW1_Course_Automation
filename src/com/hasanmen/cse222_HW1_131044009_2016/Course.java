@@ -12,6 +12,7 @@ public class Course {
     private int courseID;
     private List<User> courseTeachers = new ArrayList<>();
     private List<User> courseStudents = new ArrayList<>();
+    private List<User> courseRequests = new ArrayList<>();
     private List<CourseItem> courseItems = new ArrayList<>();
 
     public Course(String name) {
@@ -48,16 +49,31 @@ public class Course {
         this.courseStudents = courseStudents;
     }
 
+    public List<User> getCourseRequests() {
+        return courseRequests;
+    }
+
+    public void setCourseRequests(List<User> courseRequests) {
+        this.courseRequests = courseRequests;
+    }
+
     @Override
     public String toString() {
 
-        StringBuilder str = new StringBuilder("Course : " + getName());
-
+        StringBuilder str = new StringBuilder("\nCourse : " + getName());
         for (int i = 0; i < getCourseTeachers().size(); ++i) {
             str.append("\n\t\t" + getCourseTeachers().get(i));
         }
 
         return str.toString();
+    }
+
+    public boolean courseRequests(Student student) {
+        // take copy of user with call by value and add in request list
+        if (student != null && !courseRequests.contains(student)) {
+            courseRequests.add(student);
+            return true;
+        } else return false;
     }
 
     @Override

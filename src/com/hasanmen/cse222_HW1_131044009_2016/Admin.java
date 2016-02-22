@@ -17,11 +17,11 @@ public class Admin extends User {
         systemUsers = new ArrayList<>();
     }
 
-    private List<User> getSystemUsers() {
+    public List<User> getSystemUsers() {
         return systemUsers;
     }
 
-    private List<Course> getSystemCourses() {
+    public List<Course> getSystemCourses() {
         return systemCourses;
     }
 
@@ -68,6 +68,7 @@ public class Admin extends User {
                 if (!getSystemUsers().contains(user)) {
                     getSystemUsers().add(user);
                     course.getCourseTeachers().add(getSystemUsers().get(getSystemUsers().indexOf(user)));
+                    // TODO : TEACHERIN ICINDEKI VERILEN KURSLAR BOLUMUNEDE DERSLER EKLENECEK
                     return true;
                     // If teacher is in the system, check course and than add
                 } else {
@@ -99,12 +100,15 @@ public class Admin extends User {
     }
 
 
-    /*public boolean addStudent(User user) {
+    public boolean addStudent(User user) {
         if (user instanceof Student) {
-            getAccessibleUsers().add(user);
-            return true;
-        } else return false;
-    }*/
+            if (!getSystemUsers().contains(user)) {
+                getSystemUsers().add(user);
+                return true;
+            }
+        }
+        return false;
+    }
 
     @Override
     public String toString() {

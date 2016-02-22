@@ -31,10 +31,10 @@ public class Main {
             Student stdOsman = new Student("Osman", "Suzer", "osuzer", "123", "osuzer@gmail.com", 123456789);
             Student stdAliYasin = new Student("Ali Yasin", "ESER", "aliysn", "123", "aliyasineser@gmail.com", 141044058);
 
-       /* admin.addStudent(stdMercan);
-        admin.addStudent(stdGokce);
-        admin.addStudent(stdOsman);
-        admin.addStudent(stdAliYasin);*/
+            admin.addStudent(stdMercan);;
+            admin.addStudent(stdGokce);
+            admin.addStudent(stdOsman);
+            admin.addStudent(stdAliYasin);
 
             Teacher tErdogan = new Teacher("Fatih Erdogan", "Sevilgen", "ferdogansev", "123", "ferdogan@gtu.edu.tr");
             Teacher tYSA = new Teacher("Yusuf Sinan", "Akgul", "ysakgul", "123", "ysa@gtu.edu.tr");
@@ -55,6 +55,19 @@ public class Main {
                 tErdogan = (Teacher) loginUser;
                 System.out.println("-> " + tErdogan.getName() + " login the system.");
             }
+
+            loginUser = GTUStudentSystem.login(stdMercan.getUserName(), stdMercan.getPassWord());
+            if (loginUser instanceof Student) {
+                stdMercan = (Student) loginUser;
+                System.out.println("-> " + stdMercan.getName() + " login the system.");
+            }
+
+            stdMercan.enrolCourse(cse222);
+            System.out.println(tErdogan.showEnrolments(cse222));
+
+            /*);
+            System.out.println(stdMercan.getAllSystemCourses());*/
+
 
 
         }catch(ArrayIndexOutOfBoundsException e){

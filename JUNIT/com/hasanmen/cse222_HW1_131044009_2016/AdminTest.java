@@ -17,7 +17,6 @@ public class AdminTest {
     @Before
     public void setUp() throws Exception {
         adminT= new Admin("ADMIN","TEST","admin","admin","admin@email.com");
-
     }
 
     @After
