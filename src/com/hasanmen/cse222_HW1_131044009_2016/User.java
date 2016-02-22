@@ -3,12 +3,11 @@ package com.hasanmen.cse222_HW1_131044009_2016;
 /**
  * Created by Hasan MEN on 20.02.2016.
  */
-public abstract class User {
+public abstract class User implements  UserInterface{
 
     protected static int TOTAL_USER_ID = 0;
 
-
-    public String name = null;
+    private String name = null;
     private String surName = null;
     private String userName = null;
     private String eMail = null;
@@ -25,7 +24,6 @@ public abstract class User {
         ++TOTAL_USER_ID;
     }
 
-
     public String getName() {
         return name;
     }
@@ -37,7 +35,6 @@ public abstract class User {
     public String geteMail() {
         return eMail;
     }
-
 
     public String getUserName() {
         return userName;
@@ -66,7 +63,7 @@ public abstract class User {
         User user = (User) o;
 
         if (surName != null && surName.equals(user.getSurName()) &&
-                name!=null && name.equals(user.getName())) return true;
+                name != null && name.equals(user.getName())) return true;
         else return false;
     }
 

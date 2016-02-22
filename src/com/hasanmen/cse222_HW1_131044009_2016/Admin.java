@@ -8,8 +8,6 @@ import java.util.List;
  */
 public class Admin extends User {
 
-    private AutomationSystem administratorSystem;
-
     private List<Course> systemCourses = null; // erisileblinen kurslar
     private List<User> systemUsers = null;
 
@@ -64,11 +62,20 @@ public class Admin extends User {
      */
     public boolean addTeacher(Course course, User user) {
         if (user instanceof Teacher) {
-            if (null != course) {
+            // if there is course in the system
+            if (null != course && getSystemCourses().contains(course)) {
+                // If not in the system add system and then add course
                 if (!getSystemUsers().contains(user)) {
                     getSystemUsers().add(user);
                     course.getCourseTeachers().add(getSystemUsers().get(getSystemUsers().indexOf(user)));
                     return true;
+                    // If teacher is in the system, check course and than add
+                } else {
+                    if (!course.getCourseTeachers().contains(user)) {
+                        course.getCourseTeachers().add(getSystemUsers().get(getSystemUsers().indexOf(user)));
+                        return true;
+                    }
+                    return false;
                 }
             }
         }

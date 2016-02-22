@@ -65,6 +65,7 @@ public class AutomationSystem {
                     return logedAdmin;
                 } else if (usrItr instanceof Teacher) {
                     Teacher logedTeacher = (Teacher) usrItr;
+                            return logedTeacher;
                 } else return null;
             }
         }
