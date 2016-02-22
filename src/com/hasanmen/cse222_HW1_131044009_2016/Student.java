@@ -21,10 +21,7 @@ public class Student extends User {
     }
 
 
-
-    public String toString(){
-        return String.format(super.toString() + "Student ID : " +getStudentID() );
-
-
+    public String toString() {
+        return String.format(super.toString() + " Student ID : " + getStudentID());
     }
 }

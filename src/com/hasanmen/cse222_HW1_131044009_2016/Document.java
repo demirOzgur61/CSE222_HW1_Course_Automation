@@ -20,5 +20,5 @@ public abstract class Document extends CourseItem {
     }
 
     @Override
-    public  abstract boolean updateCourseItem(CourseAddable newCourseItem);
+    public abstract boolean updateCourseItem(CourseAddable newCourseItem);
 }

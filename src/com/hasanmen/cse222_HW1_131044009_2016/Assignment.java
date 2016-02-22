@@ -7,7 +7,7 @@ public class Assignment extends CourseItem {
     private String deadLine;
     private String lateDeadLine;
     private int asssingmentSize;
-    private static final int maxAssignmentSize =50;
+    private static final int maxAssignmentSize = 50;
 
     public String getDeadLine() {
         return deadLine;
@@ -43,7 +43,7 @@ public class Assignment extends CourseItem {
     @Override
     public boolean updateCourseItem(CourseAddable newCourseItem) {
 
-        if(newCourseItem instanceof Assignment){
+        if (newCourseItem instanceof Assignment) {
             Assignment tempAssingment = (Assignment) newCourseItem;
 
             setName(tempAssingment.getName());
@@ -52,7 +52,7 @@ public class Assignment extends CourseItem {
             setAsssingmentSize(tempAssingment.getAsssingmentSize());
 
             return true;
-        }else return false;
+        } else return false;
 
     }
 }

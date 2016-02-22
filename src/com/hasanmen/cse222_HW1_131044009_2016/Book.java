@@ -31,6 +31,6 @@ public class Book extends Document {
 
     @Override
     public String toString() {
-        return String.format("BOOK -> Name : " + getName() + " - AuthorName : "+getAuthorName() + " - Size : " + getSize());
+        return String.format("BOOK -> Name : " + getName() + " - AuthorName : " + getAuthorName() + " - Size : " + getSize());
     }
 }
