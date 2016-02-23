@@ -8,9 +8,20 @@ import java.util.List;
  */
 public class Student extends User {
 
+
     private List<Course> takenCourses = new ArrayList<>();
     private List<Course> allSystemCourses = new ArrayList<>();
     private int studentID;
+    public static final int NOT_FOUND = -1;
+
+    public Student(Student copyStd){
+        super(copyStd);
+
+        this.takenCourses = new ArrayList<>(copyStd.getTakenCourses());
+        this.takenCourses = new ArrayList<>(copyStd.getAllSystemCourses());
+        this.studentID = copyStd.getStudentID();
+
+    }
 
     public Student(String name, String surName, String userName, String passWord, String eMail, int studentID) {
         super(name, surName, userName, passWord, eMail);
@@ -37,6 +48,8 @@ public class Student extends User {
         return allSystemCourses;
     }
 
+
+
     public void setAllSystemCourses(List<Course> allSystemCourses) {
         this.allSystemCourses = allSystemCourses;
     }
@@ -49,10 +62,10 @@ public class Student extends User {
 
         int courseIndex = takenCourses.indexOf(course);
         // o derse kayıtlı degilse
-        if(-1 == courseIndex ){
+        if(NOT_FOUND == courseIndex ){
             courseIndex = allSystemCourses.indexOf(course);
-            if(-1 != courseIndex) {
-                allSystemCourses.get(courseIndex).courseRequests(this);
+            if(NOT_FOUND != courseIndex) {
+                allSystemCourses.get(courseIndex).joinCourse(this);
                 return true;
             }else return false;
         }else return false;

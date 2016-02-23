@@ -7,6 +7,7 @@ import java.util.List;
  * Created by Hasan MEN on 20.02.2016.
  */
 public class Admin extends User {
+    public static final int NOT_FOUND = -1;
 
     private List<Course> systemCourses = null; // erisileblinen kurslar
     private List<User> systemUsers = null;
@@ -43,7 +44,7 @@ public class Admin extends User {
     public boolean addCourse(Course course) {
         if (null != course) {
             if (!getSystemCourses().contains(course)) {
-                getSystemCourses().add(course);
+                getSystemCourses().add(new Course(course));
                 return true;
             }
         }
@@ -63,20 +64,18 @@ public class Admin extends User {
     public boolean addTeacher(Course course, User user) {
         if (user instanceof Teacher) {
             // if there is course in the system
-            if (null != course && getSystemCourses().contains(course)) {
+
+            int indexOfCourse = getSystemCourses().indexOf(course);
+            if (null != course && NOT_FOUND != indexOfCourse) {
                 // If not in the system add system and then add course
-                if (!getSystemUsers().contains(user)) {
-                    getSystemUsers().add(user);
-                    course.getCourseTeachers().add(getSystemUsers().get(getSystemUsers().indexOf(user)));
-                    // TODO : TEACHERIN ICINDEKI VERILEN KURSLAR BOLUMUNEDE DERSLER EKLENECEK
+                Course realCourse = getSystemCourses().get(indexOfCourse);
+                int indexOfTeacher = realCourse.getTeacherIndex(user); // look if there same teacher
+                if (NOT_FOUND == indexOfTeacher) {
+                    Teacher teacher = (Teacher) user;
+                    teacher.getGivenCourses().add(realCourse);
+                    addTeacher(teacher); // add teacher in the local system
+                    getSystemCourses().get(indexOfCourse).getCourseTeachers().add(teacher); // add teacher in the course
                     return true;
-                    // If teacher is in the system, check course and than add
-                } else {
-                    if (!course.getCourseTeachers().contains(user)) {
-                        course.getCourseTeachers().add(getSystemUsers().get(getSystemUsers().indexOf(user)));
-                        return true;
-                    }
-                    return false;
                 }
             }
         }
@@ -103,7 +102,7 @@ public class Admin extends User {
     public boolean addStudent(User user) {
         if (user instanceof Student) {
             if (!getSystemUsers().contains(user)) {
-                getSystemUsers().add(user);
+                getSystemUsers().add(new Student((Student) user));
                 return true;
             }
         }

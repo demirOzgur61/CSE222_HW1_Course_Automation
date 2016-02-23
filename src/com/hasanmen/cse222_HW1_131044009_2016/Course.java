@@ -6,14 +6,24 @@ import java.util.List;
 /**
  * Created by Hasan MEN on 20.02.2016.
  */
-public class Course {
+public class Course{
     private static int COURSE_ID = 0;
     private String name;
     private int courseID;
     private List<User> courseTeachers = new ArrayList<>();
     private List<User> courseStudents = new ArrayList<>();
-    private List<User> courseRequests = new ArrayList<>();
+    public List<User> courseRequests = new ArrayList<>();
     private List<CourseItem> courseItems = new ArrayList<>();
+
+
+    public Course(Course copy){
+        this.name = copy.name;
+        this.courseID = copy.getCourseID();
+        this.courseTeachers = new ArrayList<>(copy.getCourseTeachers());
+        this.courseStudents = new ArrayList<>(copy.getCourseStudents());
+        this.courseRequests = new ArrayList<>(copy.getCourseRequests());
+        this.courseItems = new ArrayList<>(copy.getCourseItems());
+    }
 
     public Course(String name) {
         this.name = name;
@@ -25,12 +35,20 @@ public class Course {
         return name;
     }
 
+    public List<CourseItem> getCourseItems() {
+        return courseItems;
+    }
+
     public void setName(String name) {
         this.name = name;
     }
 
     public int getCourseID() {
         return courseID;
+    }
+
+    public void setCourseID(int courseID) {
+        this.courseID = courseID;
     }
 
     public List<User> getCourseTeachers() {
@@ -57,6 +75,10 @@ public class Course {
         this.courseRequests = courseRequests;
     }
 
+    public int getTeacherIndex(User teacher){
+        return getCourseTeachers().indexOf(teacher);
+    }
+
     @Override
     public String toString() {
 
@@ -68,7 +90,7 @@ public class Course {
         return str.toString();
     }
 
-    public boolean courseRequests(Student student) {
+    public boolean joinCourse(Student student) {
         // take copy of user with call by value and add in request list
         if (student != null && !courseRequests.contains(student)) {
             courseRequests.add(student);

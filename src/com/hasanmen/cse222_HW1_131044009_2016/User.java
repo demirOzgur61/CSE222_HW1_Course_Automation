@@ -24,6 +24,16 @@ public abstract class User implements  UserInterface{
         ++TOTAL_USER_ID;
     }
 
+    // COPY CONSTRUCTOR
+    public User(User user){
+        this.name = user.getName();
+        this.surName = user.getSurName();
+        this.userName =user.getUserName();
+        this.eMail = user.geteMail();
+        this.passWord = user.getPassWord();
+        this.userID =user.getUserID();
+    }
+
     public String getName() {
         return name;
     }
@@ -48,6 +58,25 @@ public abstract class User implements  UserInterface{
         return userID;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setSurName(String surName) {
+        this.surName = surName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public void seteMail(String eMail) {
+        this.eMail = eMail;
+    }
+
+    public void setPassWord(String passWord) {
+        this.passWord = passWord;
+    }
 
     /**
      * Gelen obje ile USERNAME VE PASSWORD ayni ise true return  edecek.Diger durumlarda false return eder

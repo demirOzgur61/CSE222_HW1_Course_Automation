@@ -7,7 +7,9 @@ import java.util.List;
 /**
  * Created by Hasan MEN on 20.02.2016.
  */
-public class AutomationSystem {
+public class AutomationSystem  implements Cloneable{
+
+
 
     // name of course automation system
     private String name;

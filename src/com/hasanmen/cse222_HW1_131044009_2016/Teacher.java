@@ -5,7 +5,6 @@ import sun.plugin.dom.core.CoreConstants;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 /**
  * Created by Hasan MEN on 21.02.2016.
@@ -13,12 +12,17 @@ import java.util.Objects;
 public class Teacher extends User {
 
     private List<Course> givenCourses = new ArrayList<>();
+    public static final int NOT_FOUND = -1;
 
     public Teacher(String name, String surName, String userName, String passWord, String eMail) {
         super(name, surName, userName, passWord, eMail);
     }
 
-   /* public boolean acceptRequest(Student std){
+    public List<Course> getGivenCourses() {
+        return givenCourses;
+    }
+
+    /* public boolean acceptRequest(Student std){
 
 
     }*/
@@ -27,20 +31,13 @@ public class Teacher extends User {
         StringBuilder strBldr = new StringBuilder("");
 
         int index = givenCourses.indexOf(course);
-        System.out.println(index);
-        if(index != -1){
-            for(int i=0;i<givenCourses.get(i).getCourseRequests().size();++i){
-                strBldr.append(givenCourses.get(i).getCourseRequests().get(i));
-
+        if(NOT_FOUND != index){
+            for(int i=0;i<givenCourses.get(index).getCourseRequests().size();++i){
+                strBldr.append(givenCourses.get(index).getCourseRequests().get(i).toString());
             }
-
             return strBldr.toString();
         }else return null;
-
-
     }
-
-
 
     @Override
     public String toString() {
