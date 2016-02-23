@@ -4,7 +4,16 @@ package com.hasanmen.cse222_HW1_131044009_2016;
  * Created by Hasan MEN on 20.02.2016.
  */
 public class Book extends Document {
+    private String releaseDate;
     private String authorName;
+
+    public String getReleaseDate() {
+        return releaseDate;
+    }
+
+    public void setReleaseDate(String releaseDatea) {
+        this.releaseDate = releaseDate;
+    }
 
     public String getAuthorName() {
         return authorName;
@@ -14,9 +23,10 @@ public class Book extends Document {
         this.authorName = authorName;
     }
 
-    public Book(String name, String authorName, int size) {
+    public Book(String name, String authorName,String releaseDate, int size) {
         super(name, size);
         this.authorName = authorName;
+        this.releaseDate = releaseDate;
     }
 
     @Override
@@ -25,6 +35,7 @@ public class Book extends Document {
             Book tempBook = (Book) newCourseItem;
             setName(tempBook.getName()); // isimlerini ata
             setAuthorName(tempBook.getAuthorName());
+            setReleaseDate(tempBook.getReleaseDate());
             return true;
         } else return false;
     }

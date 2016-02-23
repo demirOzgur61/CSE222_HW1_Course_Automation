@@ -96,10 +96,14 @@ public abstract class User implements  UserInterface{
         else return false;
     }
 
-
     @Override
     public String toString() {
         return String.format(" Name :" + getName() + " " + getSurName() +
                 " Username : " + getUserName() + " eMail : " + geteMail());
     }
+
+    // WILL BE OVERRIDE
+    public abstract String showCourseItems(Course course);
+
+
 }

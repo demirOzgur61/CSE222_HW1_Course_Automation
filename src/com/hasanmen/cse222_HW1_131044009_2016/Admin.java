@@ -114,5 +114,16 @@ public class Admin extends User {
         return String.format("## ADMIN ## Name : " + getName() + " Surname : " + getSurName() + " eMail : " + geteMail());
     }
 
+    @Override
+    public String showCourseItems(Course course) {
+        if (null != course) {
+            int indexOfCourse = systemUsers.indexOf(course);
+            if (NOT_FOUND != indexOfCourse) {
+                return systemCourses.get(indexOfCourse).showItems();
+            }
+        }
+        return null;
+    }
+
 
 }

@@ -18,7 +18,7 @@ public class Student extends User {
         super(copyStd);
 
         this.takenCourses = new ArrayList<>(copyStd.getTakenCourses());
-        this.takenCourses = new ArrayList<>(copyStd.getAllSystemCourses());
+        this.allSystemCourses = new ArrayList<>(copyStd.getAllSystemCourses());
         this.studentID = copyStd.getStudentID();
 
     }
@@ -32,32 +32,19 @@ public class Student extends User {
         return studentID;
     }
 
-    public void setStudentID(int studentID) {
-        this.studentID = studentID;
-    }
 
     public List<Course> getTakenCourses() {
         return takenCourses;
-    }
-
-    public void setTakenCourses(List<Course> takenCourses) {
-        this.takenCourses = takenCourses;
     }
 
     public List<Course> getAllSystemCourses() {
         return allSystemCourses;
     }
 
-
-
     public void setAllSystemCourses(List<Course> allSystemCourses) {
         this.allSystemCourses = allSystemCourses;
     }
 
-    /*
-                Kurs için istekte bulunuldu o kursun içine istek olarak eklendi. Artık teacher gidip o istekleri onaylayınca
-                ogrenci o kursa kaydolmuş olacak
-             */
     public boolean enrolCourse(Course course) {
 
         int courseIndex = takenCourses.indexOf(course);
@@ -71,7 +58,24 @@ public class Student extends User {
         }else return false;
     }
 
+    public boolean unEnrolCourse(Course course){
+
+        return false;
+    }
+
     public String toString() {
         return String.format(super.toString() + " Student ID : " + getStudentID());
     }
+
+    @Override
+    public String showCourseItems(Course course) {
+        if (null != course) {
+            int indexOfCourse = takenCourses.indexOf(course);
+            if (NOT_FOUND != indexOfCourse) {
+                return takenCourses.get(indexOfCourse).showItems();
+            }
+        }
+        return null;
+    }
+
 }

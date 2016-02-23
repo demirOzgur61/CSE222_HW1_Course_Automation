@@ -107,4 +107,30 @@ public class Course{
 
         return name != null ? name.equals(course.name) : course.name == null;
     }
+
+    public boolean deleteMe(User user){
+        if(null != user){
+
+        }
+        return false;
+    }
+
+    public boolean addCourseItem(CourseItem item){
+        if(null != item){
+            courseItems.add(item);
+            return true;
+        }
+        return false;
+    }
+
+    public String showItems(){
+        StringBuilder strBldr = new StringBuilder();
+
+        strBldr.append(getName() + " Couse Items : \n");
+        for(CourseItem itr : courseItems){
+            strBldr.append("\t"+itr+"\n");
+        }
+        return strBldr.toString();
+    }
+
 }
