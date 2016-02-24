@@ -6,9 +6,12 @@ import java.util.List;
 
 /**
  * Created by Hasan MEN on 20.02.2016.
+ * This class created for automatin systems.
+ * The system has users and courses. Courses can manage with admin or teachers.
+ * First create of system, constructor will add one admin to the system.
+ * NOT : GETTERS are public but nobuody can access real course with out login.
  */
-public class AutomationSystem  implements Cloneable{
-
+public class AutomationSystem {
 
 
     // name of course automation system
@@ -58,23 +61,29 @@ public class AutomationSystem  implements Cloneable{
      * @return reference of user or null
      */
     public User login(String userName, String passWord) {
-        for (User usrItr : users) {
-            if (userName.equals(usrItr.getUserName()) && passWord.equals(usrItr.getPassWord())) {
-                if (usrItr instanceof Admin) {
-                    Admin logedAdmin = (Admin) usrItr;
-                    logedAdmin.setSystemCourses(courses);
-                    logedAdmin.setSystemUsers(users);
-                    return logedAdmin;
-                } else if (usrItr instanceof Teacher) {
-                    Teacher logedTeacher = (Teacher) usrItr;
-                    return logedTeacher;
-                } else if (usrItr instanceof Student) {
-                    Student logedStudent = (Student) usrItr;
-                    logedStudent.setAllSystemCourses(courses);
-                    return logedStudent;
+        try {
+            for (User usrItr : users) {
+                if (userName.equals(usrItr.getUserName()) && passWord.equals(usrItr.getPassWord())) {
+                    if (usrItr instanceof Admin) {
+                        Admin logedAdmin = (Admin) usrItr;
+                        logedAdmin.setSystemCourses(courses);
+                        logedAdmin.setSystemUsers(users);
+                        return logedAdmin;
+                    } else if (usrItr instanceof Teacher) {
+                        Teacher logedTeacher = (Teacher) usrItr;
+                        return logedTeacher;
+                    } else if (usrItr instanceof Student) {
+                        //System.out.println("TEST");
+                        Student logedStudent = (Student) usrItr;
+                        logedStudent.setAllSystemCourses(courses);
+                        return logedStudent;
+                    }else throw new Exception("ILLEGAL LOGIN. PLEASE CHECK USERNAME AND PASSWORD. PROGRAM ABORTED!");
                 }
-                return null;
             }
+            throw new Exception("ILLEGAL LOGIN. PLEASE CHECK USERNAME AND PASSWORD. PROGRAM ABORTED!");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.exit(1);
         }
         return null;
     }

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Hasan MEN on 20.02.2016.
+ * This class will use for first initialize of Course management system.
  */
 public class Admin extends User {
     public static final int NOT_FOUND = -1;
@@ -12,24 +12,51 @@ public class Admin extends User {
     private List<Course> systemCourses = null; // erisileblinen kurslar
     private List<User> systemUsers = null;
 
+    /**
+     * ADMIN CONSTRUCTOR
+     *
+     * @param name name of admin
+     * @param surName surname of admin
+     * @param userName username for admin
+     * @param passWord password for admin
+     * @param eMail email address for admin
+     */
     public Admin(String name, String surName, String userName, String passWord, String eMail) {
         super(name, surName, userName, passWord, eMail);
         systemCourses = new ArrayList<>();
         systemUsers = new ArrayList<>();
     }
 
+    /**
+     * THIS METHOD DANGEROUS BUT JUST LOGIN_SYSTEM CAN FILL ACTUAL USERS TO TRUE CONTROL
+     * Getter for all system users
+     * @return SYSTEM USERS LIST
+     */
     public List<User> getSystemUsers() {
         return systemUsers;
     }
 
+    /**
+     * THIS METHOD DANGEROUS BUT JUST LOGIN_SYSTEM CAN FILL ACTUAL COURSES TO TRUE CONTROL
+     * Getter for all system courses
+     * @return SYSTEM courses LIST
+     */
     public List<Course> getSystemCourses() {
         return systemCourses;
     }
 
+    /**
+     * Setter for system course
+     * @param systemCourses new system courses arraylist
+     */
     public void setSystemCourses(List<Course> systemCourses) {
         this.systemCourses = systemCourses;
     }
 
+    /**
+     * Setter for system users
+     * @param systemUsers new users arraylist
+     */
     public void setSystemUsers(List<User> systemUsers) {
         this.systemUsers = systemUsers;
     }
@@ -42,13 +69,18 @@ public class Admin extends User {
      * @return status of adding courses to system
      */
     public boolean addCourse(Course course) {
-        if (null != course) {
-            if (!getSystemCourses().contains(course)) {
-                getSystemCourses().add(new Course(course));
-                return true;
+        try {
+            if (null != course) {
+                if (!getSystemCourses().contains(course)) {
+                    getSystemCourses().add(new Course(course));
+                    return true;
+                }
             }
+            throw new Exception("ADD COURSE FAILED. THERE ARE SAME "+course+" IN THE SYSTEM.PLEASE CHECK COURSES.");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return false;
         }
-        return false;
     }
 
 
@@ -99,14 +131,23 @@ public class Admin extends User {
     }
 
 
+    /**
+     * This method takes a stutend and creates independent copy of usee then adds in general system users
+     * @param user a student referance to add system
+     * @return status of adding
+     */
     public boolean addStudent(User user) {
-        if (user instanceof Student) {
-            if (!getSystemUsers().contains(user)) {
-                getSystemUsers().add(new Student((Student) user));
-                return true;
-            }
+        try {
+            if (user instanceof Student) {
+                if (!getSystemUsers().contains(user)) {
+                    getSystemUsers().add(new Student((Student) user));
+                    return true;
+                }else throw new Exception("ADD STUDENT FAILED. STUDENT ALREADY IN COURSE!!!");
+            }else throw new Exception("ADD STUDENT FAILED. PARAMETER NOT A STUDENT!!!");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return false;
         }
-        return false;
     }
 
     @Override
@@ -124,6 +165,4 @@ public class Admin extends User {
         }
         return null;
     }
-
-
 }
