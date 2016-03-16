@@ -1,12 +1,6 @@
-package com.hasanmen.cse222_HW1_131044009_2016;
-
-import static org.junit.Assert.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
-import java.util.ArrayList;
-
 
 /**
  * Created by Hasan MEN on 22.02.2016.

@@ -1,6 +1,3 @@
-package com.hasanmen.cse222_HW1_131044009_2016;
-
-
 import java.util.ArrayList;
 import java.util.List;
 

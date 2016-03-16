@@ -1,6 +1,4 @@
-package com.hasanmen.cse222_HW1_131044009_2016;
 
-import org.hamcrest.CoreMatchers;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

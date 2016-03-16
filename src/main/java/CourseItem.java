@@ -1,5 +1,3 @@
-package com.hasanmen.cse222_HW1_131044009_2016;
-
 /**
  * Created by Hasan MEN on 20.02.2016.
  * This class will use storage course item like book,url,pdf in course class
